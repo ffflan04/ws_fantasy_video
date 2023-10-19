@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video-website-tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="main" class="showcase"><!--今回のこの section タグでは、画面上部のメニューとロゴを、囲みます。-->
+        <header><!--header -> 文書やセクションの冒頭となる見出しや概要を意味します。-->
+            <h1 class="logo">Fantasy</h1>
+            <div id="menu" class="toggle"></div><!--ハンバーガーメニューですね。cssで背景に画像指定して、表示してるんだよ。-->
+        </header>
+
+        <video src="./img/fantasy.mp4" autoplay loop muted></video><!--背景に設置する動画ですね-->
+        <!-- autoplay loop muted とやらなければ、動かないかも。-->
+
+        <div class="overlay"><!--こちらは、背景の動画にいい感じに色をつけるためのクラス、overlay です。よろしく。-->
+        </div>
+
+        <div class="text"><!--画面中央のタイトルテキスト-->
+            <h2>Fantasy Life</h2>
+            <h3>Explore Something New</h3>
+            <p><!-- "lorem15"で、補完機能を押すと、ダミーテキストを文字数を指定して、生成することができます。-->
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis ratione natus cupiditate sequi laborum. Nesciunt.
+            </p>
+            <a href="#">Dive Into</a><!--href属性の値を「#」とすることで同一ページ内へ飛ばすリンクを作れます。-->
+        </div>
+
+        <ul class="social">
+            <li><a href="#"><img src="./img/facebook.png" alt=""></a></li>
+            <li><a href="#"><img src="./img/twitter.png" alt=""></a></li>
+            <li><a href="#"><img src="./img/instagram.png" alt=""></a></li>
+        </ul>
+    </section>
+
+    <div class="menu">
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Contact</a></li>
+            <li><a href="">Destination</a></li>
+            <li><a href="">Support</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // 補完機能が出てこない時は、スペルミスってます。
+        const $menu = document.getElementById('menu')
+        const $main = document.getElementById('main')
+        $menu.onclick = function(){
+            $menu.classList.toggle('active') // classListメソッドは、便利なメソッドが揃ってたのさ...
+            $main.classList.toggle('active') // .toggleは、クラスが含まれてたら、追加、あったら削除してくれる凄いやつ
+        } 
+
+
+        //const $menuToggle = document.querySelector('.toggle') // querySelectorで、希望のクラス名を取得できる。
+        //const $showcase = document.querySelector('.showcase')
+    </script>
+</body>
+</html>

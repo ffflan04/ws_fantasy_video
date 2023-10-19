@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,800&family=Ubuntu:ital,wght@1,300&display=swap');
+
+* { /* cssの初期化、やりやすいようにね。*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.showcase { /* メインキャンバスと言いますか。そんな感じです。*/
+    position: absolute;
+    right: 0;
+    width: 100vw; /* とりあえず、view width は、親要素の幅に依存せず、画面幅いっぱいのサイズにする */
+    height: 100vh;
+    background: #111;
+    color: #fff;
+    padding: 15vw 0;
+    display: flex; /* 子要素、flexアイテム化の宣言。*/
+    align-items: center; /* 要素の中で、中央寄せします。*/
+    padding-left: 5vw;
+    transition: 1s; /* とりあえず、transitionつけとけば、いい感じになる。
+    /*justify-content: center;  /* flexコンテナの中で、間を開けて中央寄せします。*/
+    /* space-betweenを設定しているのに、テキストが、左端によらなかったのは、既に、左端には、flexアイテムが存在していたからか。*/
+}
+
+.showcase.active {
+    position: absolute;
+    right: 20vw; /* width 100vwの設定のshowcaseクラスを、まるごと、左にうごかすことで、あたかも、拡張したようにみせます。*/
+}
+
+.showcase header { /* タイトルロゴと、ハンバーガーメニューを管轄してるheaderタグ */
+    /* position absolute で、親要素 -> メインキャンバスを基準とした、固定値を設定します。*/
+    position: absolute; /* flexアイテムと、positionセレクタは、競合します。 */
+    top: 0;
+    left: 0;
+    display: flex; /* 管理下の、DOM要素を、flexアイテムにします。 */
+    align-items: center; /* flexアイテムのy軸を揃えます。*/
+    width: 100%; /* width 100% にすることで、左右いっぱいに要素を広げることで、space betweenなどを使えるようになる。*/
+    justify-content: space-between;
+    padding: 5% 5%;
+    z-index: 10;
+}
+
+.toggle { /* ハンバーガーメニューのcss。凄いよなこれ。実態は、divタグで囲まれてるだけだぜ。 */
+    background: url('./img/menu.png');
+    width: 60px; /* 要素のサイズを指定してます。*/
+    height: 60px;
+    background-size: 30px; /* 背景に表示される画像の大きさを指定します。*/
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer; /* マウスオーバーした時、形状が変わる */
+}
+
+.toggle.active {
+    background: url('./img/close.png');
+    width: 60px;
+    height: 60px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.menu { /* 右上に表示されるメニューですね。実装は、position absoluteで、重ね合わせてます。*/
+    position: absolute;
+    top: 0;
+    right: 5%;
+    z-index: -1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.menu li {
+    list-style: none;
+    margin-bottom: 20px;
+}
+.menu li a {
+    text-decoration: none;
+    transition: 0.5s;
+}
+.menu li a:hover {
+    color: #03a9f4;
+}
+
+.showcase video { /* 背景のvideoのcss　*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; 今回のレッスンの主題です。*/
+    object-fit: cover; /* 動画を埋め込む時に余った余白を、綺麗にカバーしてくれます。*/
+}
+
+.text { /* メインキャンバスの、中心に位置するテキストの大きさなどのcss */
+    z-index: 9;
+}
+.text h2 {
+    font-size: 5vw;
+    min-width: 50%;
+}
+.text h3 {
+    font-size: 4vw;
+}
+.text p {
+    margin-top: 10px;
+    font-size: 1.5vw;
+}
+.text a {
+    display: inline-block; /* インライン要素に、margin を当てることができます。*/
+    text-decoration: none; /* リンクの下線部を消すことができるよ。*/
+    margin-top: 10px;
+    letter-spacing: 2px; /* 文字間の隙間を指定するプロパティ */
+    background: #fff;
+    padding: 10px 20px;
+    transition: 0.3s; /* 親要素に、transition を指定することで、hoverした後にも、最後まで、アニメーションを適応できる。*/
+}
+.text a:hover {
+    letter-spacing: 4px;
+}
+
+.overlay { /* メインキャンバスに色のフィルターをかけていい感じにするクラスです。*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #03a9f4;
+    /* これは、重要なプロパティですね。*/
+    mix-blend-mode: overlay; /* 兄弟要素の背景をどのように混合するか決定します。*/
+}
+
+.social { /* 画面下のSNSボタンの画面配置、アニメーションの設定 */
+    position: absolute;
+    z-index: 1;
+    bottom: 1vw;
+    display: flex;
+}
+.social li {
+    list-style: none;
+    transition: 1s;
+}
+.social li a {
+    margin-right: 1vw;
+}
+.social li:hover {
+    transform: translateY(-500%);
+}
+
+/* レスポンシブ対応の実装だって */
+/* メディアクエリを使うらしい */
+/* まぁ、そういう設定もあるんだなぁ、って覚えてもらって。
+@media (max-width: 798px){
+    .showcase, .showcase header {
+        padding: 40px;
+    }
+    .text h2 {
+        font-size: 3em
+    }
+    .text h3 {
+        font-size: 2em;
+    }
+}
